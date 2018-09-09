@@ -1,0 +1,19 @@
+--- dbparser.tab.hh	2018-08-28 16:39:35.445634062 +0700
++++ dbparser.tab.hh	2018-08-28 16:33:43.000000000 +0700
+@@ -184,15 +184,15 @@
+     template <typename T>
+     T&
+     build (const T& t)
+     {
+       YYASSERT (!yytypeid_);
+       YYASSERT (sizeof (T) <= S);
+       yytypeid_ = & typeid (T);
+-      return *new (yyas_<T> ()) T (t);
++      return *new (yyas_<T> ()) T (std::move(const_cast<T&>(t)));
+     }
+ 
+     /// Accessor to a built \a T.
+     template <typename T>
+     T&
+     as ()
+     {

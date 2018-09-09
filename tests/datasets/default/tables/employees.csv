@@ -1,0 +1,8 @@
+i_id,s_name,i_salary,i_manager
+1,Ivan,500,-1
+2,Vasiliy,300,1
+3,Evgeniy,300,1
+4,Petr,150,3
+5,Pavel,1000,-1
+6,Nikita,600,5
+7,Mikhail,500,5

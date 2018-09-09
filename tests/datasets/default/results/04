@@ -1,0 +1,2 @@
+employees.id	employees.name	employees.salary	employees.manager	departments.id	departments.name	departments.manager
+5	Pavel	1000	-1	2	IT	5
