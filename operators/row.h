@@ -16,6 +16,10 @@ struct Value {
 
     Value(int i): type(Type::INT), intval(i) {}
     Value(std::string s): type(Type::STR), strval(s) {}
+    Value(std::string v, Type type): type(type) {
+        if(type == Type::INT) intval = std::stoi(v);
+        else strval = v;
+    }
 
     bool operator==(const Value &other) const {
         if(type != other.type) return false;

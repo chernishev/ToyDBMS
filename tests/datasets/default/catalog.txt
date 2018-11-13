@@ -1,0 +1,9 @@
+departments 2
+    id INT ASC UNIQUE 1 2
+    name STR DESC UNIQUE IT Sales
+    manager INT ASC UNIQUE 1 5
+employees 7
+    id INT ASC UNIQUE 1 7
+    name STR UNSORTED UNIQUE Evgeniy Vasiliy
+    salary INT UNSORTED NOTUNIQUE 150 1000
+    manager INT UNSORTED NOTUNIQUE -1 5

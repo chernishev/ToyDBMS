@@ -1,0 +1,13 @@
+*.a
+*.o
+*.swp
+parser/dblexer.yy.cc
+parser/dbparser.output
+parser/dbparser.tab.cc
+parser/dbparser.tab.hh
+parser/location.hh
+parser/position.hh
+parser/stack.hh
+parsertestexe
+plannertestexe
+operatorstestexe

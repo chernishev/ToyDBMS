@@ -3,9 +3,9 @@ CXXFLAGS = -Wno-deprecated-register -O0 -g -Wall -std=c++14 #-DDBSCANDEBUG
 
 PARSEROBJ   = parser/parser.o parser/lexer.o parser/query.o
 OPERATOROBJ = operators/datasource.o operators/join.o
-PLANNEROBJ  = planner/constructor.o
+PLANNEROBJ  = planner/constructor.o planner/catalog.o
 
-all: parsertestexe plannertestexe testexe
+all: parsertestexe plannertestexe testexe catalogtestexe
 
 %.o: %.cc
 	$(CXX) $(CXXFLAGS) -c -o $@ $*.cc
@@ -30,8 +30,11 @@ parsertestexe: parser/parsertest.cc $(PARSEROBJ)
 plannertestexe: planner/test.cc $(PARSEROBJ) $(OPERATOROBJ) $(PLANNEROBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ -lreadline
 
+catalogtestexe: planner/catalog_test.cc planner/catalog.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
 clean:
-	rm -f parsertestexe plannertestexe testexe
+	rm -f parsertestexe plannertestexe testexe catalogtestexe
 	rm -f $(PARSEROBJ) $(OPERATOROBJ) $(PLANNEROBJ)
 	rm -f $(addprefix parser/, dblexer.yy.cc dbparser.tab.cc dbparser.tab.hh \
 		stack.hh location.hh position.hh dbparser.output)
