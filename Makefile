@@ -4,6 +4,7 @@ CXXFLAGS = -Wno-deprecated-register -O0 -g -Wall -std=c++14 #-DDBSCANDEBUG
 PARSEROBJ   = parser/parser.o parser/lexer.o parser/query.o
 OPERATOROBJ = operators/datasource.o operators/join.o
 PLANNEROBJ  = planner/constructor.o planner/catalog.o
+UTILOBJ     = util/config.o
 
 all: parsertestexe plannertestexe testexe catalogtestexe
 
@@ -21,13 +22,13 @@ parser/lexer.o: parser/dblexer.l parser/parser.o
 	flex --outfile=parser/dblexer.yy.cc $<
 	$(CXX) $(CXXFLAGS) -c -o $@ parser/dblexer.yy.cc
 
-testexe: main.cc $(PARSEROBJ) $(OPERATOROBJ) $(PLANNEROBJ)
+testexe: main.cc $(PARSEROBJ) $(OPERATOROBJ) $(PLANNEROBJ) $(UTILOBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 parsertestexe: parser/parsertest.cc $(PARSEROBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-plannertestexe: planner/test.cc $(PARSEROBJ) $(OPERATOROBJ) $(PLANNEROBJ)
+plannertestexe: planner/test.cc $(PARSEROBJ) $(OPERATOROBJ) $(PLANNEROBJ) $(UTILOBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^ -lreadline
 
 catalogtestexe: planner/catalog_test.cc planner/catalog.o
